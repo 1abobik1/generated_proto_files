@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package auth; 
+
+// protoc --go_out=. --go-grpc_out=. sso.proto  create go files
+
+option go_package = ".";
+
+service Auth{
+    rpc Register (RegisterRequest) returns (RegisterResponse); 
+    rpc Login (LoginRequest) returns (LoginResponse);
+    rpc IsAdmin (IsAdminRequest) returns (IsAdminReponse);
+}
+
+message RegisterRequest {
+    string email = 1;
+    string password = 2;
+}
+
+message RegisterResponse {
+    int64 user_id = 1;
+    string access_token = 2;
+    string refresh_token = 3;
+}
+
+message LoginRequest{
+    string email = 1;
+    string password = 2;
+    int32 app_id = 3;
+}
+
+
+message LoginResponse {
+    string access_token = 1;
+    string refresh_token = 2;
+}
+
+message IsAdminRequest{
+    int64 user_id = 1;
+}
+
+message IsAdminReponse {
+    bool is_admin = 1;
+}
