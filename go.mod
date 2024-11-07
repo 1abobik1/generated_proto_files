@@ -1,4 +1,4 @@
-module github.com/1abobik1/protobuf
+module github.com/1abobik1/generated_proto_files
 
 go 1.23.1
 
